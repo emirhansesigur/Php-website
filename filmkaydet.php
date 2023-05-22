@@ -14,6 +14,7 @@
     $yonetmen = $_POST['yonetmen'];
     $yil = $_POST['yil'];
     $oyuncular = $_POST['oyuncular'];
+    $yorum = $_POST['yorum'];
     $puan = $_POST['puan'];
 
     echo "Girdiginiz bilgiler:</br>";
@@ -25,8 +26,8 @@
 
     //sorguyu hazirliyoruz
     $sql = "INSERT INTO film " .
-        "(filmadi,yonetmen,yil,oyuncular, puan) " .
-        "VALUES ( '$filmadi','$yonetmen', '$yil', '$oyuncular', '$puan')";
+        "(filmadi,yonetmen,yil,oyuncular,yorum,puan) " .
+        "VALUES ( '$filmadi','$yonetmen', '$yil', '$oyuncular', '$yorum' ,'$puan')";
 
     // $sql = "INSERT INTO memurlar " .
     //     "(ad,soyad,birim,maas) " .

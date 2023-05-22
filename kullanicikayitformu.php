@@ -23,7 +23,7 @@
                     </div>
                     <div class="field">
                         <div class="control">
-                            <input class="input is-medium is-rounded" type="texy" placeholder="Ad Soyad" autocomplete="current-password" required />
+                            <input class="input is-medium is-rounded" type="text" placeholder="Ad Soyad" autocomplete="current-password" name="adsoyad" required />
                         </div>
                     </div>
                     <div class="field">
@@ -40,7 +40,7 @@
                 <nav class="level">
                     <div class="level-item has-text-centered">
                         <div>
-                            <a href="#">Giriş Yap</a>
+                            <a href="./girisyapsayfasi.php">Giriş Yap</a>
                         </div>
                     </div>
                 </nav>

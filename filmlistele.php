@@ -34,7 +34,7 @@
         echo "<td>" . $gelen['yil'] . "</td>";
         echo "<td>" . $gelen['oyuncular'] . "</td>";
         echo "<td>" . $gelen['puan'] . "</td>";
-        echo "<td><a href='filmedit.php?id=";
+        echo "<td><a href='filmeditsayfasi.php?id=";
         echo $gelen['id'];
         echo "'>Edit</a></td></tr>";
     }

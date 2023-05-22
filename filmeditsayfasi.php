@@ -1,8 +1,28 @@
-<!DOCTYPE html>
+<?php
+//mysql baglanti kodunu ekliyoruz
+include("mysqlbaglan.php");
+
+//sorguyu hazirliyoruz
+$sql = "SELECT * FROM film WHERE id=" . $_GET['id'];
+
+//sorguyu veritabanina gönderiyoruz.
+$cevap = mysqli_query($baglanti, $sql);
+
+//eger cevap FALSE ise hata yazdiriyoruz.      
+if (!$cevap) {
+    echo '<br>Hata:' . mysqli_error($baglanti);
+}
+
+
+//veritabanından gelen cevabı alıyoruz.
+$gelen = mysqli_fetch_array($cevap);
+?>
+
+
 <html>
 
 <head>
-    <title>Film Kayit Formu</title>
+    <title>Film Edit Form</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <style>
@@ -162,12 +182,10 @@
 </head>
 
 <body>
-
-
     <div class="main-block">
         <div class="left-part">
             <i class="fas fa-graduation-cap"></i>
-            <h1>FILM KAYDEEEEEEEEEEEEEEET</h1>
+            <h1>FILM EDITTTTTTTTTTTT</h1>
             <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p>
             <div class="btn-group">
                 <a class="btn-item" href="https://www.w3docs.com/learn-html.html">Learn HTML</a>
@@ -175,21 +193,20 @@
             </div>
         </div>
 
-        <form action="filmkaydet.php" method="POST">
+        <form action="filmedit.php?id=<?php echo $_GET['id'] ?>" method="POST">
             <div class="title">
                 <i class="fas fa-pencil-alt"></i>
-                <h2>Film Kaydet</h2>
+                <h2>Film Edit</h2>
             </div>
             <div class="info">
-                <input class="fname" type="text" name="filmadi" placeholder="Film Adi">
-                <input type="text" name="yonetmen" placeholder="Yonetmen">
-                <input type="text" name="yil" placeholder="Yili">
-                <input type="text" name="oyuncular" placeholder="Oyuncular">
-                <input type="text" name="yorum" placeholder="Film Hakkındaki Yorumunuzu Giriniz">
+                <input class="fname" type="text" name="filmadi" placeholder="Film Adı" value="<?php echo $gelen['filmadi'] ?>">
+                <input type="text" name="yonetmen" placeholder="Yönetmen" value="<?php echo $gelen['yonetmen'] ?>">
+                <input type="text" name="yil" placeholder="Yılı" value="<?php echo $gelen['yil'] ?>">
+                <input type="text" name="oyuncular" placeholder="Oyuncular" value="<?php echo $gelen['oyuncular'] ?>">
+                <input type="text" name="yorum" placeholder="Yorumunuzu Giriniz: " value="<?php echo $gelen['yorum'] ?>">
                 Filme kac puan veriyorsun:
                 <select name="puan">
-                    <!-- 1- 5 arası kontol et -->
-                    <option value="1">1</option> 
+                    <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
