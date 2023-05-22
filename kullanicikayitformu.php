@@ -8,12 +8,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/neumorphic-login.css">
+
+    <style>
+        .navbar {
+            /* background-color: rgba(128, 128, 128, 0.5); */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-link {
+            color: black;
+            /* text-decoration: none; */
+            padding: 5px 10px;
+            font-size: 24px;
+        }
+
+        .navbar-right {
+            margin-right: 35px;
+        }
+        
+    </style>
+
 </head>
 
 <body>
+
+<nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-link" href="indexx.php">Anasayfa</a>
+        </div>
+    
+        <div class="navbar-right">
+            <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+            <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+        </div>
+    </nav>
+
     <section class="hero is-fullheight">
         <div class="hero-body has-text-centered">
             <div class="login" style="margin: auto;">
+
+
+            
                 Kaydol
                 <form action="kullanicikaydet.php" method="POST">
                     <div class="field">

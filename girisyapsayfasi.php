@@ -8,9 +8,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="../css/neumorphic-login.css">
+
+    <style>
+        .navbar {
+            /* background-color: rgba(128, 128, 128, 0.5); */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-link {
+            color: black;
+            /* text-decoration: none; */
+            padding: 5px 10px;
+            font-size: 24px;
+        }
+
+        .navbar-right {
+            margin-right: 35px;
+        }
+    </style>
 </head>
 
 <body>
+
+    <?php
+    // session_start();
+    if (isset($_SESSION['kullaniciadi'])) {
+    ?>
+        <nav class="navbar">
+            <div class="navbar-right">
+                <a class="navbar-link" href="cikisyap.php">ÇIKIŞ YAP</a>
+            </div>
+        </nav>
+    <?php
+
+    } else {
+    ?>
+
+        <!-- <nav class="navbar">
+            <div class="navbar-left">
+                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+            </div>
+
+            <div class="navbar-right">
+                <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+                <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+            </div>
+        </nav> -->
+    <?php
+    }
+    ?>
+
+    <!-- <nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-link" href="indexx.php">Anasayfa</a>
+        </div>
+
+        <div class="navbar-right">
+            <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+            <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+        </div>
+    </nav> -->
+
     <section class="hero is-fullheight">
         <div class="hero-body has-text-centered">
             <div class="login" style="margin: auto;">
@@ -18,7 +78,7 @@
                 <?php
                 include("mysqlbaglan.php");
                 session_start();
-                
+
                 if ($_POST) {
                     $kullaniciadi = $_POST["kullaniciadi"];
                     $sifre = $_POST["sifre"];
@@ -28,7 +88,6 @@
                         $q = mysqli_query($baglanti, $sql);
                         $num = mysqli_num_rows($q);
 
-
                         if ($num == 0) {
                             echo 'Böyle bir kullanıcı bulunamadı!</';
                         } else if ($num == 1) {
@@ -36,14 +95,13 @@
                             echo "Giriş başarılı! Hoş geldiniz, Sayın " . $user["adsoyad"];
                             $_SESSION['kullaniciadi'] = $kullaniciadi;
                             echo "session: " . $_SESSION['kullaniciadi'] . "<br>";
-                            header("refresh:2, url=index.php");
+                            header("refresh:2, url=indexx.php");
                             // echo "Profili görüntülemek için <a href='profil.php'>tıklayınız</a>";
                         }
                     } else {
                         echo 'Bos deger girmeyiniz';
                     }
                 }
-
                 ?>
 
                 Giriş Yap

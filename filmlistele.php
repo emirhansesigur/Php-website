@@ -1,11 +1,51 @@
+<?php
+session_start();
+if(!isset($_SESSION['kullaniciadi'])){
+    header("location: indexx.php");
+    exit();
+}
+
+?>
+
 <html>
 
 <head>
     <meta charset="utf-8">
     <title>Filmleri Listele</title>
+    <style>
+        .navbar {
+            /* background-color: rgba(128, 128, 128, 0.5); */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-link {
+            color: black;
+            /* text-decoration: none; */
+            padding: 5px 10px;
+            font-size: 24px;
+        }
+
+        .navbar-right {
+            margin-right: 35px;
+        }
+    </style>
 </head>
 
 <body>
+
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-link" href="indexx.php">Anasayfa</a>
+        </div>
+
+        <div class="navbar-right">
+            <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+            <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+        </div>
+    </nav>
+
     <?php
     //mysql baglanti kodunu ekliyoruz
     include("mysqlbaglan.php");

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(!isset($_SESSION['kullaniciadi'])){
+    header("location: girisyapsayfasi.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -158,11 +166,41 @@
                 height: auto;
             }
         }
+
+        .navbar {
+            background-color: rgba(128, 128, 128, 0.5);
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-link {
+            color: black;
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 24px;
+        }
+
+        .navbar-link:hover {
+            /* background-color: darkgray; */
+            background-color: rgba(128, 128, 128, 0.5);
+        }
+
+        .navbar-right {
+            margin-right: 35px;
+        }
     </style>
 </head>
 
 <body>
-
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a class="navbar-link" href="#">Anasayfa</a>
+        </div>
+        <div class="navbar-right">
+            <a class="navbar-link" href="#">Giriş Yap</a>
+        </div>
+    </nav>
 
     <div class="main-block">
         <div class="left-part">
@@ -189,7 +227,7 @@
                 Filme kac puan veriyorsun:
                 <select name="puan">
                     <!-- 1- 5 arası kontol et -->
-                    <option value="1">1</option> 
+                    <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
