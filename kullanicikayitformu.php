@@ -27,14 +27,13 @@
         .navbar-right {
             margin-right: 35px;
         }
-        
     </style>
 
 </head>
 
 <body>
 
-<nav class="navbar">
+    <!-- <nav class="navbar">
         <div class="navbar-left">
             <a class="navbar-link" href="indexx.php">Anasayfa</a>
         </div>
@@ -43,14 +42,41 @@
             <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
             <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
         </div>
-    </nav>
+    </nav> -->
+
+    <?php
+    session_start();
+    if (isset($_SESSION['kullaniciadi'])) {
+    ?>
+        <nav class="navbar">
+            <div class="navbar-right">
+                <a class="navbar-link" href="./cikisyap.php">ÇIKIŞ YAP</a>
+            </div>
+        </nav>
+    <?php
+
+    } else {
+    ?>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+            </div>
+
+            <div class="navbar-right">
+                <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+                <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+            </div>
+        </nav>
+    <?php
+    }
+    ?>
 
     <section class="hero is-fullheight">
         <div class="hero-body has-text-centered">
             <div class="login" style="margin: auto;">
 
 
-            
+
                 Kaydol
                 <form action="kullanicikaydet.php" method="POST">
                     <div class="field">

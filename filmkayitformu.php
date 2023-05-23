@@ -1,11 +1,12 @@
 <?php
 session_start();
-if(!isset($_SESSION['kullaniciadi'])){
+if (!isset($_SESSION['kullaniciadi'])) {
     header("location: girisyapsayfasi.php");
     exit();
 }
 
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -193,14 +194,41 @@ if(!isset($_SESSION['kullaniciadi'])){
 </head>
 
 <body>
-    <nav class="navbar">
+    <!-- <nav class="navbar">
         <div class="navbar-left">
             <a class="navbar-link" href="#">Anasayfa</a>
         </div>
         <div class="navbar-right">
             <a class="navbar-link" href="#">Giriş Yap</a>
         </div>
-    </nav>
+    </nav> -->
+
+    <?php
+
+    if (isset($_SESSION['kullaniciadi'])) {
+    ?>
+        <nav class="navbar">
+            <div class="navbar-right">
+                <a class="navbar-link" href="./cikisyap.php">ÇIKIŞ YAP</a>
+            </div>
+        </nav>
+    <?php
+
+    } else {
+    ?>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+            </div>
+
+            <div class="navbar-right">
+                <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+                <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+            </div>
+        </nav>
+    <?php
+    }
+    ?>
 
     <div class="main-block">
         <div class="left-part">

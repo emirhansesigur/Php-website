@@ -6,9 +6,12 @@
 
 <body>
     <?php
+    session_start();
     //mysql baglanti kodunu ekliyoruz 
     include("mysqlbaglan.php");
 
+    
+    
     //degiskenleri formdan aliyoruz
     $filmadi = $_POST['filmadi'];
     $yonetmen = $_POST['yonetmen'];
@@ -16,6 +19,16 @@
     $oyuncular = $_POST['oyuncular'];
     $yorum = $_POST['yorum'];
     $puan = $_POST['puan'];
+    $kullaniciid = $_SESSION["kullaniciid"];
+    
+    if ($yil === null) {
+        echo "Hatalı yıl değeri!";
+        header("location: filmkaydet.php");
+        header("location: indexx.php");
+        exit;
+        // İstenilen diğer işlemleri yapabilirsiniz
+    }
+
 
     echo "Girdiginiz bilgiler:</br>";
     echo "Film Adi   :$filmadi </br>";
@@ -26,12 +39,8 @@
 
     //sorguyu hazirliyoruz
     $sql = "INSERT INTO film " .
-        "(filmadi,yonetmen,yil,oyuncular,yorum,puan) " .
-        "VALUES ( '$filmadi','$yonetmen', '$yil', '$oyuncular', '$yorum' ,'$puan')";
-
-    // $sql = "INSERT INTO memurlar " .
-    //     "(ad,soyad,birim,maas) " .
-    //     "VALUES ( '$ad','$soyad', '$birim', '$maas')";
+        "(filmadi,kaydedenid,yonetmen,yil,oyuncular,yorum,puan) " .
+        "VALUES ( '$filmadi',$kullaniciid,'$yonetmen', '$yil', '$oyuncular', '$yorum' ,'$puan')";
 
     echo $sql;
     echo "<br/>";
@@ -48,6 +57,7 @@
 
     //veritabani baglantisini kapatiyoruz.
     mysqli_close($baglanti);
+
     ?>
 </body>
 

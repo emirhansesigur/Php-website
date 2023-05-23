@@ -12,5 +12,5 @@ if (!$baglanti) {
     exit;
 }
 
-echo "MySQL sunucuya baglanti kuruldu.</br>";
+// echo "MySQL sunucuya baglanti kuruldu.</br>";
 ?>

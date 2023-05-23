@@ -33,8 +33,9 @@
 <body>
 
     <?php
-    // session_start();
+    session_start();
     if (isset($_SESSION['kullaniciadi'])) {
+
     ?>
         <nav class="navbar">
             <div class="navbar-right">
@@ -46,7 +47,7 @@
     } else {
     ?>
 
-        <!-- <nav class="navbar">
+        <nav class="navbar">
             <div class="navbar-left">
                 <a class="navbar-link" href="indexx.php">Anasayfa</a>
             </div>
@@ -55,21 +56,10 @@
                 <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
                 <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
             </div>
-        </nav> -->
+        </nav>
     <?php
     }
     ?>
-
-    <!-- <nav class="navbar">
-        <div class="navbar-left">
-            <a class="navbar-link" href="indexx.php">Anasayfa</a>
-        </div>
-
-        <div class="navbar-right">
-            <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
-            <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
-        </div>
-    </nav> -->
 
     <section class="hero is-fullheight">
         <div class="hero-body has-text-centered">
@@ -77,10 +67,11 @@
 
                 <?php
                 include("mysqlbaglan.php");
-                session_start();
+                // session_start();
 
                 if ($_POST) {
                     $kullaniciadi = $_POST["kullaniciadi"];
+                    // $kullaniciadi = $_POST["kullaniciadi"];
                     $sifre = $_POST["sifre"];
                     if ($kullaniciadi != "" and $sifre != "") {
                         $sifre_hash = hash("sha256", $sifre); // sifreyi hash ledik.
@@ -94,8 +85,10 @@
                             $user = mysqli_fetch_assoc($q);
                             echo "Giriş başarılı! Hoş geldiniz, Sayın " . $user["adsoyad"];
                             $_SESSION['kullaniciadi'] = $kullaniciadi;
+
+                            $_SESSION['kullaniciid'] = $user["kullaniciid"];    
                             echo "session: " . $_SESSION['kullaniciadi'] . "<br>";
-                            header("refresh:2, url=indexx.php");
+                            header("refresh:1, url=indexx.php");
                             // echo "Profili görüntülemek için <a href='profil.php'>tıklayınız</a>";
                         }
                     } else {
@@ -107,7 +100,6 @@
                 Giriş Yap
                 <form method="POST">
 
-                    <!-- action="girisyap.php"  -->
                     <div class="field">
                         <div class="control">
                             <input class="input is-medium is-rounded" type="email" name="kullaniciadi" placeholder="hello@example.com" autocomplete="username" required />

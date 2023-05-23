@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-if (isset($_SESSION['kullaniciadi'])) {
-    echo "giris var";
-}
+// if (isset($_SESSION['kullaniciadi'])) {
+//     echo "giris var";
+// }
 
 ?>
 
@@ -36,8 +36,7 @@ if (isset($_SESSION['kullaniciadi'])) {
 </head>
 
 <body>
-
-    <?php
+<?php
 
     if (isset($_SESSION['kullaniciadi'])) {
     ?>
@@ -63,6 +62,8 @@ if (isset($_SESSION['kullaniciadi'])) {
     <?php
     }
     ?>
+
+
 
 
     <h1> Seçenekler </h1>

@@ -16,6 +16,14 @@ if (!$cevap) {
 
 //veritabanından gelen cevabı alıyoruz.
 $gelen = mysqli_fetch_array($cevap);
+
+
+// GIRIS YAPILDI MI KONTROL EDERIZ
+session_start();
+if(!isset($_SESSION['kullaniciadi'])){
+    header("location: girisyapsayfasi.php");
+    exit();
+}
 ?>
 
 
@@ -182,6 +190,7 @@ $gelen = mysqli_fetch_array($cevap);
 </head>
 
 <body>
+    zaafi anlat
     <div class="main-block">
         <div class="left-part">
             <i class="fas fa-graduation-cap"></i>

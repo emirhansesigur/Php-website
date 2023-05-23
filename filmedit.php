@@ -24,9 +24,6 @@
     echo "Oyuncular  :$oyuncular</br>";
     echo "PUAN da YAZDIRRRRR";
 
-    // $sql = "UPDATE memurlar " .
-    // "SET ad='$ad',soyad='$soyad',birim='$birim',maas='$maas' " .
-    // "WHERE memur_id=" . $_GET['id'];
 
     //guncellemek icin sorguyu ayarlıyoruz.
     $sql = "UPDATE film " .
