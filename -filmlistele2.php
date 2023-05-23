@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['kullaniciadi'])) {
-    header("location: indexx.php");
+    header("location: index.php");
     exit();
 }
 
@@ -49,7 +49,7 @@ if (!isset($_SESSION['kullaniciadi'])) {
     ?>
         <nav class="navbar">
             <div class="navbar-left">
-                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+                <a class="navbar-link" href="index.php">Anasayfa</a>
             </div>
 
             <div class="navbar-right">

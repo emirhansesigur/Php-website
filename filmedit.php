@@ -17,25 +17,16 @@
     $yorum = $_POST['yorum'];
     $puan = $_POST['puan'];
 
-    echo "Girdiginiz bilgiler:</br>";
-    echo "Film Adi   :$filmadi </br>";
-    echo "Yonetmen:$yonetmen</br>";
-    echo "Yapim Yili :$yil</br>";
-    echo "Oyuncular  :$oyuncular</br>";
-    echo "PUAN da YAZDIRRRRR";
-
-
+    
     //guncellemek icin sorguyu ayarlıyoruz.
     $sql = "UPDATE film " .
         "SET filmadi='$filmadi',yonetmen='$yonetmen',yil='$yil',oyuncular='$oyuncular',yorum='$yorum',puan='$puan' " .
         "WHERE id=" . $_GET['id'];
-        "WHERE memur_id=" . $_GET['id'];
+    "WHERE memur_id=" . $_GET['id'];
     // $sql = "INSERT INTO memurlar " .
     //     "(ad,soyad,birim,maas) " .
     //     "VALUES ( '$ad','$soyad', '$birim', '$maas')";
 
-    echo $sql;
-    echo "<br/>";
 
     //sorguyu veritabanina gönderiyoruz.
     $cevap = mysqli_query($baglanti, $sql);
@@ -47,6 +38,9 @@
         echo "Veritabanina eklendi, Kayıtları görmek için";
         // echo " <a href='listele.php'> Tiklayiniz</a>\n";
     }
+
+    echo "<script> alert('Film basarili bir sekilde kaydedilmistir'); window.location.href='signup.php'; </script>";
+
 
     //veritabani baglantisini kapatiyoruz.
     mysqli_close($baglanti);

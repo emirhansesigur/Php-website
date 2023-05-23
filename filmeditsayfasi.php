@@ -54,7 +54,9 @@ if(!isset($_SESSION['kullaniciadi'])){
         }
 
         body {
-            background: url("https://hips.hearstapps.com/hmg-prod/images/best-netflix-animation-index-1585754615.jpg") no-repeat center;
+            background-image: url('./bg.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
             background-size: cover;
         }
 
@@ -186,19 +188,66 @@ if(!isset($_SESSION['kullaniciadi'])){
                 height: auto;
             }
         }
+
+        .navbar {
+            /* background-color: rgba(128, 128, 128, 0.5); */
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-link {
+            color: black;
+            /* text-decoration: none; */
+            padding: 5px 10px;
+            font-size: 24px;
+        }
+
+        .navbar-right {
+            margin-right: 35px;
+        }
     </style>
 </head>
 
 <body>
     zaafi anlat
+
+    <?php
+    if (isset($_SESSION['kullaniciadi'])) {
+    ?>
+        <nav class="navbar">
+        <div class="navbar-right">
+                <a class="navbar-link" href="index.php"><?php echo $_SESSION['kullaniciadi']; ?></a>
+            </div>
+            <div class="navbar-right">
+                <a class="navbar-link" href="./cikisyap.php">ÇIKIŞ YAP</a>
+            </div>
+        </nav>
+    <?php
+
+    } else {
+    ?>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a class="navbar-link" href="index.php">Anasayfa</a>
+            </div>
+
+            <div class="navbar-right">
+                <a class="navbar-link" href="girisyapsayfasi.php">Giris Yap</a>
+                <a class="navbar-link" href="kullanicikayitformu.php">Kaydol</a>
+            </div>
+        </nav>
+    <?php
+    }
+    ?>
+
     <div class="main-block">
-        <div class="left-part">
+    <div class="left-part">
             <i class="fas fa-graduation-cap"></i>
-            <h1>FILM EDITTTTTTTTTTTT</h1>
-            <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p>
+            <h1>FILM EDİT</h1>
+            <p >Daha önce kaydettiğiniz filmi güncelleyin</p>
             <div class="btn-group">
-                <a class="btn-item" href="https://www.w3docs.com/learn-html.html">Learn HTML</a>
-                <a class="btn-item" href="https://www.w3docs.com/quiz/#">Select Quiz</a>
+                <a class="btn-item" href="index.php">Anasayfa</a>
             </div>
         </div>
 
@@ -225,7 +274,7 @@ if(!isset($_SESSION['kullaniciadi'])){
             <!-- <div class="checkbox">
                 <input type="checkbox" name="checkbox"><span>I agree to the <a href="https://www.w3docs.com/privacy-policy">Privacy Poalicy for W3Docs.</a></span>
             </div> -->
-            <button type="submit" href="/">Kaydet</button>
+            <button type="submit" href="/">Filmi Güncelle</button>
         </form>
     </div>
 </body>

@@ -35,7 +35,7 @@
 
     <!-- <nav class="navbar">
         <div class="navbar-left">
-            <a class="navbar-link" href="indexx.php">Anasayfa</a>
+            <a class="navbar-link" href="index.php">Anasayfa</a>
         </div>
     
         <div class="navbar-right">
@@ -49,6 +49,9 @@
     if (isset($_SESSION['kullaniciadi'])) {
     ?>
         <nav class="navbar">
+        <div class="navbar-right">
+                <a class="navbar-link" href="index.php"><?php echo $_SESSION['kullaniciadi']; ?></a>
+            </div>
             <div class="navbar-right">
                 <a class="navbar-link" href="./cikisyap.php">ÇIKIŞ YAP</a>
             </div>
@@ -59,7 +62,7 @@
     ?>
         <nav class="navbar">
             <div class="navbar-left">
-                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+                <a class="navbar-link" href="index.php">Anasayfa</a>
             </div>
 
             <div class="navbar-right">
@@ -75,10 +78,49 @@
         <div class="hero-body has-text-centered">
             <div class="login" style="margin: auto;">
 
+                <?php
+                //mysql baglanti kodunu ekliyoruz 
+                include("mysqlbaglan.php");
+                // session_start();
+                if ($_POST) {
+                    //degiskenleri formdan aliyoruz
+                    $kullaniciadi = $_POST['kullaniciadi'];
+                    $adsoyad = $_POST['adsoyad'];
+                    $sifre = $_POST['sifre'];
+
+                    $uzunluk = strlen($sifre);
+                    if ($uzunluk < 6 || $uzunluk > 16) {
+                        echo "sifre degeri 6 ile 16 karakter arasında olmalıdir <br>";
+                    } else if ($kullaniciadi != "" and $sifre != "") {
+
+
+                        $sifre_hash = hash("sha256", $sifre);
+
+                        //sorguyu hazirliyoruz
+                        $sql = "INSERT INTO kullanici " .
+                            "(kullaniciadi,adsoyad,sifre) " .
+                            "VALUES ('$kullaniciadi','$adsoyad','$sifre_hash')";
+
+                        //sorguyu veritabanina gönderiyoruz.
+                        $cevap = mysqli_query($baglanti, $sql);
+                        
+                        //eger cevap FALSE ise hata yazdiriyoruz.      
+                        if (!$cevap) {
+                            echo '<br>Hata: ' . mysqli_error($baglanti);
+                        } else {
+                            echo "KAYIT İSLEMİ BASARİLİ";
+                        }
+                    } else {
+                        echo "boş değer girmeyiniz. ";
+                    }
+                }
+                //veritabani baglantisini kapatiyoruz.
+                mysqli_close($baglanti);
+                ?>
 
 
                 Kaydol
-                <form action="kullanicikaydet.php" method="POST">
+                <form method="POST">
                     <div class="field">
                         <div class="control">
                             <input class="input is-medium is-rounded" type="email" placeholder="Eposta Adresi" autocomplete="username" name="kullaniciadi" required />

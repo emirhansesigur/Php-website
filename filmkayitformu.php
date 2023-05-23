@@ -35,7 +35,9 @@ if (!isset($_SESSION['kullaniciadi'])) {
         }
 
         body {
-            background: url("https://hips.hearstapps.com/hmg-prod/images/best-netflix-animation-index-1585754615.jpg") no-repeat center;
+            background-image: url('./bg.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
             background-size: cover;
         }
 
@@ -208,6 +210,9 @@ if (!isset($_SESSION['kullaniciadi'])) {
     if (isset($_SESSION['kullaniciadi'])) {
     ?>
         <nav class="navbar">
+        <div class="navbar-right">
+                <a class="navbar-link" href="index.php"><?php echo $_SESSION['kullaniciadi']; ?></a>
+            </div>
             <div class="navbar-right">
                 <a class="navbar-link" href="./cikisyap.php">ÇIKIŞ YAP</a>
             </div>
@@ -218,7 +223,7 @@ if (!isset($_SESSION['kullaniciadi'])) {
     ?>
         <nav class="navbar">
             <div class="navbar-left">
-                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+                <a class="navbar-link" href="index.php">Anasayfa</a>
             </div>
 
             <div class="navbar-right">
@@ -233,11 +238,10 @@ if (!isset($_SESSION['kullaniciadi'])) {
     <div class="main-block">
         <div class="left-part">
             <i class="fas fa-graduation-cap"></i>
-            <h1>FILM KAYDEEEEEEEEEEEEEEET</h1>
-            <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p>
+            <h1>FILM KAYDET</h1>
+            <p >İzlediginiz filmi yorumunuz ve puanınızla birlikte kaydedin</p>
             <div class="btn-group">
-                <a class="btn-item" href="https://www.w3docs.com/learn-html.html">Learn HTML</a>
-                <a class="btn-item" href="https://www.w3docs.com/quiz/#">Select Quiz</a>
+                <a class="btn-item" href="index.php">Anasayfa</a>
             </div>
         </div>
 
@@ -247,11 +251,11 @@ if (!isset($_SESSION['kullaniciadi'])) {
                 <h2>Film Kaydet</h2>
             </div>
             <div class="info">
-                <input class="fname" type="text" name="filmadi" placeholder="Film Adi">
-                <input type="text" name="yonetmen" placeholder="Yonetmen">
-                <input type="text" name="yil" placeholder="Yili">
-                <input type="text" name="oyuncular" placeholder="Oyuncular">
-                <input type="text" name="yorum" placeholder="Film Hakkındaki Yorumunuzu Giriniz">
+                <input class="fname" type="text" name="filmadi" placeholder="Film Adi" required>
+                <input type="text" name="yonetmen" placeholder="Yonetmen" required>
+                <input type="text" name="yil" placeholder="Yili" required>
+                <input type="text" name="oyuncular" placeholder="Oyuncular" required>
+                <input type="text" name="yorum" placeholder="Film Hakkındaki Yorumunuzu Giriniz" required>
                 Filme kac puan veriyorsun:
                 <select name="puan">
                     <!-- 1- 5 arası kontol et -->

@@ -5,5 +5,5 @@ session_start();
 
 session_destroy();
 
-header("location: indexx.php");
+header("location: index.php");
 exit();

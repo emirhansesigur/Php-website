@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['kullaniciadi'])) {
-    header("location: indexx.php");
+    header("location: index.php");
     exit();
 }
 
@@ -72,6 +72,9 @@ if (!isset($_SESSION['kullaniciadi'])) {
     if (isset($_SESSION['kullaniciadi'])) {
     ?>
         <nav class="navbar">
+        <div class="navbar-right">
+                <a class="navbar-link" href="index.php"><?php echo $_SESSION['kullaniciadi']; ?></a>
+            </div>
             <div class="navbar-right">
                 <a class="navbar-link" href="./cikisyap.php">ÇIKIŞ YAP</a>
             </div>
@@ -82,7 +85,7 @@ if (!isset($_SESSION['kullaniciadi'])) {
     ?>
         <nav class="navbar">
             <div class="navbar-left">
-                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+                <a class="navbar-link" href="index.php">Anasayfa</a>
             </div>
 
             <div class="navbar-right">
@@ -99,8 +102,6 @@ if (!isset($_SESSION['kullaniciadi'])) {
     include("mysqlbaglan.php");
 
     $kullaniciid = $_SESSION["kullaniciid"];
-
-    echo  "kullanici numarasi:  ". $_SESSION["kullaniciid"];
 
 
     //sorguyu hazirliyoruz

@@ -27,6 +27,10 @@
         .navbar-right {
             margin-right: 35px;
         }
+
+        form {
+            width: 350px;
+        }
     </style>
 </head>
 
@@ -39,6 +43,9 @@
     ?>
         <nav class="navbar">
             <div class="navbar-right">
+                <a class="navbar-link" href="index.php"><?php echo $_SESSION['kullaniciadi']; ?></a>
+            </div>
+            <div class="navbar-right">
                 <a class="navbar-link" href="cikisyap.php">ÇIKIŞ YAP</a>
             </div>
         </nav>
@@ -49,7 +56,7 @@
 
         <nav class="navbar">
             <div class="navbar-left">
-                <a class="navbar-link" href="indexx.php">Anasayfa</a>
+                <a class="navbar-link" href="index.php">Anasayfa</a>
             </div>
 
             <div class="navbar-right">
@@ -73,7 +80,11 @@
                     $kullaniciadi = $_POST["kullaniciadi"];
                     // $kullaniciadi = $_POST["kullaniciadi"];
                     $sifre = $_POST["sifre"];
-                    if ($kullaniciadi != "" and $sifre != "") {
+
+                    $uzunluk = strlen($sifre);
+                    if ($uzunluk < 6 || $uzunluk > 16) {
+                        echo "sifre degeri 6 ile 16 karakter arasında olmalıdir <br>";
+                    } else if ($kullaniciadi != "" and $sifre != "") {
                         $sifre_hash = hash("sha256", $sifre); // sifreyi hash ledik.
                         $sql = "SELECT * FROM kullanici WHERE `kullaniciadi`='$kullaniciadi' AND `sifre`='$sifre_hash' LIMIT 1";
                         $q = mysqli_query($baglanti, $sql);
@@ -86,15 +97,16 @@
                             echo "Giriş başarılı! Hoş geldiniz, Sayın " . $user["adsoyad"];
                             $_SESSION['kullaniciadi'] = $kullaniciadi;
 
-                            $_SESSION['kullaniciid'] = $user["kullaniciid"];    
+                            $_SESSION['kullaniciid'] = $user["kullaniciid"];
                             echo "session: " . $_SESSION['kullaniciadi'] . "<br>";
-                            header("refresh:1, url=indexx.php");
+                            header("refresh:1, url=index.php");
                             // echo "Profili görüntülemek için <a href='profil.php'>tıklayınız</a>";
                         }
                     } else {
-                        echo 'Bos deger girmeyiniz';
+                        echo 'kullanici adi ya da sifre değeri boş bırakılamaz.<br>';
                     }
                 }
+                mysqli_close($baglanti);
                 ?>
 
                 Giriş Yap

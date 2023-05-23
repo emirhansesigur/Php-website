@@ -10,8 +10,7 @@
     //mysql baglanti kodunu ekliyoruz 
     include("mysqlbaglan.php");
 
-    
-    
+
     //degiskenleri formdan aliyoruz
     $filmadi = $_POST['filmadi'];
     $yonetmen = $_POST['yonetmen'];
@@ -19,15 +18,13 @@
     $oyuncular = $_POST['oyuncular'];
     $yorum = $_POST['yorum'];
     $puan = $_POST['puan'];
-    $kullaniciid = $_SESSION["kullaniciid"];
+    $kullaniciid = $_SESSION["kullaniciid"]; //ONEMLI: hangi kullanicinin filmi kaydettigini belirlemek icin.
     
-    if ($yil === null) {
-        echo "Hatalı yıl değeri!";
-        header("location: filmkaydet.php");
-        header("location: indexx.php");
-        exit;
-        // İstenilen diğer işlemleri yapabilirsiniz
-    }
+    // if () {
+    //     echo "Hatalı yıl değeri!";
+    //     header("location: filmkayitformu.php");
+    //     exit();
+    // }
 
 
     echo "Girdiginiz bilgiler:</br>";
@@ -51,8 +48,7 @@
     if (!$cevap) {
         echo '<br>Hata:' . mysqli_error($baglanti);
     } else {
-        echo "Veritabanina eklendi, Kayıtları görmek için";
-        // echo " <a href='listele.php'> Tiklayiniz</a>\n";
+        echo "Veritabanina eklendi";
     }
 
     //veritabani baglantisini kapatiyoruz.
